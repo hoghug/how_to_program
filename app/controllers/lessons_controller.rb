@@ -7,6 +7,7 @@ class LessonsController < ApplicationController
   def new
     @sections = Section.all
     @lesson = Lesson.new
+    @last_lesson = Lesson.find(:all, :order => "number").last
     render('new.html.erb')
   end
 
@@ -34,7 +35,7 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find_by(number: params[:number])
     if @lesson.update(params[:lesson])
-      flash[:notice] = "Post successfully created"
+      flash[:notice] = "Post successfully updated"
       redirect_to("/lessons/#{@lesson.number}")
     else
       render('edit.html.erb')

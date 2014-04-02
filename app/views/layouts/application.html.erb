@@ -19,6 +19,10 @@
         $(this).next('.section-lessons').slideToggle('fast');
         $(this).text( $(this).text() == '+' ? '-' : '+' )
       })
+
+      if ($('#video').text()) {
+        $('#video').html($('#video').text())
+      }
     })
   </script>
 </body>
