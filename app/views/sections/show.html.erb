@@ -1,0 +1,18 @@
+<% if @message %>
+  <h3><%= @message %></h3>
+<% end %>
+
+<h1><%= @section.name %></h1>
+
+<p>
+  <% if Section.exists?(@section.id - 1) %>
+    <a href="/sections/<%= @section.id - 1 %>">&lt;&lt; Previous</a> |
+  <% end %>
+  <a href="/sections">Show All</a> |
+  <% if Section.exists?(@section.id + 1) %>
+    <a href="/sections/<%= @section.id + 1 %>">Next &gt;&gt;</a>
+  <% end %>
+  ||<a href="/sections/<%= @section.id %>/edit"><button class="btn btn-success">Edit</button></a>
+  <a href="/sections/<%= @section.id %>" data-confirm="You sure?" data-method="delete" rel="nofollow"><button class="btn btn-danger">Delete</button></a>
+</p>
+

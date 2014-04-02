@@ -1,0 +1,30 @@
+<h1>Edit a lesson:</h1>
+
+<% if @lesson.errors.any? %>
+  <h2>Fix these errors:</h2>
+  <ul>
+  <% @lesson.errors.full_message.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<form action="/lessons/<%= @lesson.number %>" method="post">
+  <input name="_method" type="hidden" value="patch">
+  <label class="l-label"><span>Section:</span>
+    <select name="lesson[section_id]">
+      <% @sections.each do |section| %>
+        <option
+          <% if section.id == @lesson.section_id%>
+            selected
+          <% end %>
+         value="<%= section.id %>"><%= section.name %></option>
+      <% end %>
+    </select>
+  </label>
+  <label class="l-label"><span>Lesson:</span><input class="i-number" min="1" maxlength="3" size="2" type="number" name="lesson[number]" value="<%= @lesson.number %>"></label>
+  <label class="l-label"><span>Name:</span><input type="text" name="lesson[name]" value="<%= @lesson.name %>"></label>
+  <label class="l-label"><span>Description:</span><textarea name="lesson[description]"><%= @lesson.description %></textarea></label>
+  <div class="clear"></div>
+  <button class="btn btn-danger">Submit</button>
+</form>

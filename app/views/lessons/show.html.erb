@@ -1,0 +1,20 @@
+<% if flash[:notice] %>
+  <h6><%= flash[:notice] %></h6>
+<% end %>
+
+<h1><%= @lesson.number %>. <%= @lesson.name %></h1>
+<p><%= @lesson.description %></p>
+<p><a href="/sections/<%= @section.id %>"><%= @section.name %></a></p>
+
+<p>
+  <% if Lesson.exists?(number: @lesson.number - 1) %>
+  <a href="/lessons/<%= @lesson.number - 1 %>"><< Previous</a> |
+  <% end %>
+  <a href="/lessons">Show All</a>
+  <% if Lesson.exists?(number: @lesson.number + 1) %>
+    |<a href="/lessons/<%= @lesson.number + 1 %>">Next >></a>
+  <% end %>
+  ||<a href="/lessons/<%= @lesson.number %>/edit"><button class="btn btn-sm btn-success">Edit</button></a>
+  <a href="/lessons/<%= @lesson.id %>" data-confirm="You sure?" data-method="delete" rel="nofollow"><button class="btn btn-sm btn-danger">Delete</button></a>
+</p>
+

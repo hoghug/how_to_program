@@ -1,0 +1,19 @@
+<h1>Sections List</h1>
+
+<ul id="section-list">
+<% @sections.each do |section| %>
+    <li>
+      <a href="/sections/<%= section.id %>"><%= section.name %></a>
+      <span class="expander">+</span>
+      <ul class="section-lessons">
+        <% Lesson.where(section_id: section.id).each do |lesson| %>
+            <li><a href="/lessons/<%= lesson.number %>"><%= lesson.name %></a></li>
+        <% end %>
+      </ul>
+    </li>
+<% end %>
+</ul>
+
+<p>
+  <a href="/sections/new"><button class="btn btn-success">Add Section</button></a>
+</p>

@@ -1,0 +1,9 @@
+
+development:
+  adapter: postgresql
+  database: LHTP_development
+
+test:
+  adapter: postgresql
+  database: LHTP_test
+
